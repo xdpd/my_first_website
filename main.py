@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 
-site = Flask(__name__)
+app = Flask(__name__)
 
 def get_fact(theme, lang):
     try:
@@ -29,7 +29,7 @@ def get_fact(theme, lang):
     except:
         return "Error"
 
-@site.route("/")
+@app.route("/")
 def main_page():
     theme = request.args.get("theme", "general")
     mode = request.args.get("mode", "dark")
@@ -38,4 +38,4 @@ def main_page():
     return render_template("index.html", fact=fact, theme=theme, mode=mode, lang=lang)
 
 if __name__ == "__main__":
-    site.run(debug=True)
+    app.run(debug=True)
